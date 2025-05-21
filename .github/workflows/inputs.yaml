@@ -20,10 +20,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "astring: $astring"
-          echo "achoice: $achoice"
-          echo "abool: $abool"
-          echo "anenv: $anenv"
+          echo "astring: -z $astring"
+          echo "achoice: -z $achoice"
+          echo "abool: -z $abool"
+          echo "anenv: -z $anenv"
+          
+          if [ -z "${anenv+x}" ]; then
+            echo "anenv is null (unset)"
+          elif [ -z "$anenv" ]; then
+            echo "anenv is set, but empty string"
+          else
+            echo "anenv has a value: $anenv"
+          fi
+          
         env:
           astring: ${{ inputs.astring }}
           achoice: ${{ inputs.achoice }}
