@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+
+          echo null
           
           if [ -z "${astring+x}" ]; then
             echo "astring is null (unset)"
