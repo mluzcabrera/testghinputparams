@@ -20,10 +20,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "astring: -z $astring"
-          echo "achoice: -z $achoice"
-          echo "abool: -z $abool"
-          echo "anenv: -z $anenv"
+          
+          if [ -z "${astring+x}" ]; then
+            echo "astring is null (unset)"
+          elif [ -z "$astring" ]; then
+            echo "astring is set, but empty string"
+          else
+            echo "astring has a value: $astring"
+          fi
+          
+          if [ -z "${achoice+x}" ]; then
+            echo "achoice is null (unset)"
+          elif [ -z "$achoice" ]; then
+            echo "achoice is set, but empty string"
+          else
+            echo "achoice has a value: $achoice"
+          fi
+          
+          if [ -z "${abool+x}" ]; then
+            echo "abool is null (unset)"
+          elif [ -z "$abool" ]; then
+            echo "abool is set, but empty string"
+          else
+            echo "abool has a value: $abool"
+          fi
           
           if [ -z "${anenv+x}" ]; then
             echo "anenv is null (unset)"
