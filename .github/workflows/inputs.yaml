@@ -1,1 +1,31 @@
-
+on:
+  workflow_dispatch:
+    inputs:
+      astring:
+        type: string
+      achoice:
+        # default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      abool:
+        type: boolean
+      anenv:
+        type: environment
+        
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "astring: $astring"
+          echo "achoice: $achoice"
+          echo "abool: $abool"
+          echo "anenv: $anenv"
+        env:
+          astring: ${{ inputs.astring }}
+          achoice: ${{ inputs.achoice }}
+          abool: ${{ inputs.abool }}
+          anenv: ${{ inputs.anenv }}
